@@ -6,7 +6,7 @@ public class User {
     private String sex;
     private String idcard;
     private String pwd;
-    private String state;
+    private int state;
 
     private int role;
     private int u_times ;
@@ -15,7 +15,7 @@ public class User {
 
     }
 
-    public User(String uid, String name, String sex, String idcard, String pwd, String state, int role, int u_times) {
+    public User(String uid, String name, String sex, String idcard, String pwd, int state, int role, int u_times) {
         this.uid = uid;
         this.name = name;
         this.sex = sex;
@@ -46,7 +46,7 @@ public class User {
         return pwd;
     }
 
-    public String getState() {
+    public int getState() {
         return state;
     }
 
@@ -78,7 +78,7 @@ public class User {
         this.pwd = pwd;
     }
 
-    public void setState(String state) {
+    public void setState(int state) {
         this.state = state;
     }
 

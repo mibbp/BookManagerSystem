@@ -48,12 +48,6 @@
             border: white solid 3px;
             border-radius: 20px;
         }
-        .tittle{
-
-            margin-left: 200px;
-
-
-        }
         #login_{
             width: 300px;
             height: 200px;
