@@ -50,7 +50,7 @@
         }
         .tittle{
 
-            margin-left: 200px;
+            margin-left: 100px;
 
 
         }
@@ -95,7 +95,7 @@
 
 
     </script>
-
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 
@@ -118,7 +118,7 @@
                 <button id="btn01">注册</button>
                 <button id="btn02" onclick="login()">登录</button>
                 <br>
-                <span id="error" style="color:red"></span>
+                <span id="error" style="color:red">${error}</span>
             </div>
 
 
