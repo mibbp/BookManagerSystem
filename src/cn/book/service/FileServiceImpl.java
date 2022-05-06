@@ -13,4 +13,12 @@ public class FileServiceImpl implements FileService{
 
     }
 
+    @Override
+    public User getAdmainUser(String admid) {
+        if(admid.equals("")||admid.trim()==null){
+            return null;
+        }
+        else return fd.getUserByidOrName(admid);
+    }
+
 }

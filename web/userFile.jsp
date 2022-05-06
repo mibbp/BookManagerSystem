@@ -59,7 +59,19 @@
     <div id="frame">
         <div id="search">
             <input type="text" id="sea">
-            <button id="btn01">查询</button>
+            <button id="btn01" onclick="search()" >查询</button>
+            <script>
+                function search(){
+                    alert("a");
+                    let goalFile = document.getElementById("sea").value;
+                    let admId = ${user.getUid()};
+                    alert(admId);
+                    window.location.href = "fileServlet?action=search&admid="+admId+"&goalFile="+goalFile;
+
+                }
+
+
+            </script>
             <div id="file">
                 账户:&nbsp;${user.getUid()}
                 <br>

@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface FileDao {
     public List<User> getAllUser();
+
+    User getUserByidOrName(String admid);
 }

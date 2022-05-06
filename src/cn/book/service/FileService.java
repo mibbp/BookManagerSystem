@@ -7,4 +7,5 @@ public interface FileService {
 
     public List<User> getAllUser();
 
+    User getAdmainUser(String admid);
 }

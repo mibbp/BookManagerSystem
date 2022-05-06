@@ -51,7 +51,7 @@
         .tittle{
 
             margin-left: 100px;
-            
+
 
 
         }
@@ -112,8 +112,8 @@
                 <label for="uid">账号:</label>
                 <input placeholder="请输入账号" type="text" id="uid" name="uid">
                 <br><br>
-                <label for="upwd"></label>
-                密码:&nbsp;&nbsp;<input placeholder="请输入密码" type="password" id="upwd" name="upwd">
+                <label for="upwd">密码:</label>
+                <input placeholder="请输入密码" type="password" id="upwd" name="upwd">
                 <br><br>
 
                 <button id="btn01">注册</button>
