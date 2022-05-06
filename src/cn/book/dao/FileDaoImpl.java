@@ -14,17 +14,22 @@ public class FileDaoImpl implements FileDao{
     public List<User> getAllUser() {
         List <User> arr = new ArrayList<User>();
 
-        String url = "jdbc:sqlserver://127.0.0.1:1433;databaseName=book";
+        String url = "jdbc:sqlserver://localhost:1433;databaseName=book";
         Connection connection;
 
         try {
+            try {
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
             connection = DriverManager.getConnection(url,"sa","llh2002908");
 
             PreparedStatement pre = null;
             Statement stat = connection.createStatement();//创建一个 Statement 对象来将 SQL 语句发送到数据库。
 //            ResultSet res=stat.executeQuery("select * from [dbo].[user]");
             ResultSet res = null;
-            String sql="select * from [dbo].[user] where u_id!=0";
+            String sql="select * from [dbo].[user] where u_id!='0'";
             System.out.println(sql);
             try {
                 pre = connection.prepareStatement(sql);
@@ -54,6 +59,7 @@ public class FileDaoImpl implements FileDao{
 //            }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
+            System.out.println("catch");
             e.printStackTrace();
         }// 连接数据库cpp
 

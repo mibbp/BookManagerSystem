@@ -51,6 +51,7 @@
         .tittle{
 
             margin-left: 100px;
+            
 
 
         }

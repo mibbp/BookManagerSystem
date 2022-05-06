@@ -37,13 +37,12 @@ public class Login extends HttpServlet {
         else{
             //账号密码正确跳转到主界面
             req.setAttribute("user",user);
-            req.setAttribute("mainRight","userFile.jsp");
-//            FileService fl = new FileServiceImpl();
-//            List<User> arr = fl.getAllUser();
-//            for (int i=0;i<arr.size();i++){
-//                System.out.println(arr.get(i).toString());
-//            }
 
+            FileService fl = new FileServiceImpl();
+            List<User> arr = fl.getAllUser();
+            req.setAttribute("arr",arr);
+
+            req.setAttribute("mainRight","userFile.jsp");
             req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
 
         }

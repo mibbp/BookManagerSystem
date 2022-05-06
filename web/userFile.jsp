@@ -79,22 +79,19 @@
                 <td>状态</td>
                 <td>操作</td>
             </tr>
-            <tr>
-                <td>202031773154</td>
-                <td>刘龙浩</td>
-                <td>5111526200301130510</td>
-                <td>3</td>
-                <td>0</td>
-                <td><button>删除</button></td>
-            </tr>
-            <tr>
-                <td>124901590184</td>
-                <td>张三</td>
-                <td>1287489550399275941</td>
-                <td>5</td>
-                <td>0</td>
-                <td><button>删除</button></td>
-            </tr>
+
+            <c:forEach items="${arr}" var="user" >
+                <tr>
+                <td>${user.getUid()}</td>
+                <td>${user.getName()}</td>
+                <td>${user.getIdcard()}</td>
+                <td>${user.getU_times()}</td>
+                <td>${user.getState()}</td>
+                <td><button>删除</button> <button>查看详细信息</button></td>
+                </tr>
+            </c:forEach>
+
+
         </table>
     </div>
 </body>
