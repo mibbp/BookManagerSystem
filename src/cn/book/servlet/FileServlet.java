@@ -74,6 +74,24 @@ public class FileServlet extends HttpServlet {
             req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
 
         }
+        else if(deal.equals("upbook")){
+//            window.location.href = "fileServlet?action=upbook&admid=${user.getUid()}&bookId="+bookId+"&number="+number;
+            String bookId = req.getParameter("bookId");
+            String number = req.getParameter("number");
+            String price = req.getParameter("price");
+            fs.upBookNum(bookId,number,price);
+        }
+        else if(deal.equals("toUpBook")){
+//             window.location.href = "fileServlet?action=toUpBook&admid=${user.getUid()}&bookid="+m;
+            String m=req.getParameter("bookid");
+            Book book = fs.getBookByNameOrId(m).get(0);
+
+            req.setAttribute("user",user);
+            req.setAttribute("book",book);
+            req.setAttribute("mainRight","upBook.jsp");
+            req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
+
+        }
 
 
 

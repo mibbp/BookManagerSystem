@@ -14,4 +14,6 @@ public interface FileDao {
     List<Book> getAllBook();
 
     List<Book> getBookByNameOrId(String goalFile);
+
+    void upBookNum(String bookId, String number, String price);
 }

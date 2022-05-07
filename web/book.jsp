@@ -97,7 +97,7 @@
                 <td>${book.getBook_type()}</td>
                 <td>${book.getBook_num()}</td>
                 <td>${book.getBook_lend()}</td>
-                <td><button>修改</button> <button onclick="findAllFile('${book.getBook_id()}')">查看详细信息</button></td>
+                <td><button onclick="toUpBook('${book.getBook_id()}')">修改</button> <button onclick="findAllFile('${book.getBook_id()}')">查看详细信息</button></td>
 
             </tr>
         </c:forEach>
@@ -105,6 +105,9 @@
             function findAllFile(v){
                 //v查看书id
                 window.location.href = "fileServlet?action=findAllFile&admid=${user.getUid()}&bookid="+v;
+            }
+            function toUpBook(m){
+                window.location.href = "fileServlet?action=toUpBook&admid=${user.getUid()}&bookid="+m;
             }
 
         </script>

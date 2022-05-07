@@ -13,4 +13,7 @@ public interface FileService {
     List<Book> getAllBook();
 
     List<Book> getBookByNameOrId(String goalFile);
+
+
+    void upBookNum(String bookId, String number, String price);
 }

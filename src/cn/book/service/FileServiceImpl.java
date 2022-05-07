@@ -32,4 +32,11 @@ public class FileServiceImpl implements FileService{
         return fd.getBookByNameOrId(goalFile);
     }
 
+    @Override
+    public void upBookNum(String bookId, String number, String price) {
+        fd.upBookNum(bookId,number,price);
+    }
+
+
+
 }
