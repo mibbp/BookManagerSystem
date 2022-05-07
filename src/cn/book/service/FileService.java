@@ -16,4 +16,6 @@ public interface FileService {
 
 
     void upBookNum(String bookId, String number, String price);
+
+    void addBook(String a, String b, String c, String d, String e, String f, String g, String h, String l);
 }

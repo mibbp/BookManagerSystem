@@ -99,7 +99,48 @@ public class FileServlet extends HttpServlet {
             req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
 
         }
+        else if(deal.equals("goBookManage")){
+//            window.location.href = "fileServlet?action=goBookManage&admid="+${user.getUid()};
+            List <Book> arr = fs.getAllBook();
+            req.setAttribute("arr",arr);
+            req.setAttribute("user",user);
 
+            req.setAttribute("mainRight","book.jsp");
+            req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
+        }
+        else if(deal.equals("goHead")){
+//            window.location.href = "fileServlet?action=goHead&admid="+${user.getUid()};
+            req.setAttribute("user",user);
+            req.setAttribute("mainRight","show.jsp");
+            req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
+        }
+        else if(deal.equals("goBookAdd")){
+//            window.location.href = "fileServlet?action=goBookAdd&admid="+${user.getUid()};
+            req.setAttribute("user",user);
+            req.setAttribute("mainRight","AddBook.jsp");
+            req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
+        }
+        else if(deal.equals("sureAdd")){
+//            window.location.href = "fileServlet?action=sureAdd&admid=+${user.getUid()}&a="+book_name+"&b="+book_type
+//                + "&c="+book_num+"&d="+book_price+"&e="+book_ISBN+"&f="+book_address+"&g="+book_business+"&h="+book_author
+//                + "&i="+book_edition;
+            String a = req.getParameter("a");
+            String b = req.getParameter("b");
+            String c = req.getParameter("c");
+            String d = req.getParameter("d");
+            String e = req.getParameter("e");
+            String f = req.getParameter("f");
+            String g = req.getParameter("g");
+            String h = req.getParameter("h");
+            String l = req.getParameter("l");
+            fs.addBook(a,b,c,d,e,f,g,h,l);
+
+            req.setAttribute("user",user);
+            req.setAttribute("mainRight","show.jsp");
+            req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
+            System.out.println("222");
+
+        }
 
 
 

@@ -44,9 +44,9 @@
 <body>
 <div id="BigFrame">
     <div id = "rightNavigation">
-        <button id="a">首页</button>
-        <button id="b">图书管理</button>
-        <button id="c">增加图书</button>
+        <button id="a" onclick="goHead()">回到首页</button>
+        <button id="b" onclick="goBookManage()">图书管理</button>
+        <button id="c" onclick="goBookAdd()">增加图书</button>
         <button id="d">查看借阅</button>
         <button id="e">借阅记录</button>
         <button id="f" onclick="goUserShow()">用户管理</button>
@@ -57,6 +57,18 @@
         function goUserShow(){
             window.location.href = "fileServlet?action=goUserShow&admid="+${user.getUid()};
 
+        }
+        function goBookManage(){
+            alert("333")
+            window.location.href = "fileServlet?action=goBookManage&admid="+${user.getUid()};
+            alert("555")
+
+        }
+        function goHead(){
+            window.location.href = "fileServlet?action=goHead&admid="+${user.getUid()};
+        }
+        function goBookAdd(){
+            window.location.href = "fileServlet?action=goBookAdd&admid="+${user.getUid()};
         }
 
 

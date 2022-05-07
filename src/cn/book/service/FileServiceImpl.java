@@ -37,6 +37,10 @@ public class FileServiceImpl implements FileService{
         fd.upBookNum(bookId,number,price);
     }
 
+    @Override
+    public void addBook(String a, String b, String c, String d, String e, String f, String g, String h, String l) {
+        fd.addBook(a,b,c,d,e,f,g,h,l);
+    }
 
 
 }

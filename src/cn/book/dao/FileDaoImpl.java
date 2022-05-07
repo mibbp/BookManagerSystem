@@ -4,10 +4,13 @@ import cn.book.pojo.Book;
 import cn.book.pojo.User;
 
 import java.sql.*;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.List;
 import cn.book.pojo.User;
+import java.util.Date;
 
 public class FileDaoImpl implements FileDao{
 
@@ -268,6 +271,18 @@ UPDATE [dbo].[books] set book_num=10,book_price=24 where book_id='b101121';
 
 
 
+    }
+
+    @Override
+    public void addBook(String a, String b, String c, String d, String e, String f, String g, String h, String l) {
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+        String bid = "b"+sdf.format(date);
+//        Insert Into [dbo].[books] Values
+//('b567823','母猪产后护理','生物护理',5,30,2,589-176-8-2,'四川省南充市','四川大学出版社','刘龙浩','2022第七版',5);
+        String sql = "Insert Into [dbo].[books] Values('"+bid+"','"+a+"','"+b+"',"+c+","+d+",0,"+e+",'"+f+"','"+g+"','"+h+"','"+l+"',0)";
+//        System.out.println(sql);
+        deal(sql);
     }
 
     private void deal(String sql) {
