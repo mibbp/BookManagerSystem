@@ -80,6 +80,13 @@ public class FileServlet extends HttpServlet {
             String number = req.getParameter("number");
             String price = req.getParameter("price");
             fs.upBookNum(bookId,number,price);
+
+
+            List arr = fs.getBookByNameOrId(bookId);
+            req.setAttribute("arr",arr);
+            req.setAttribute("user",user);
+            req.setAttribute("mainRight","book.jsp");
+            req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
         }
         else if(deal.equals("toUpBook")){
 //             window.location.href = "fileServlet?action=toUpBook&admid=${user.getUid()}&bookid="+m;
