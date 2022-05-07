@@ -1,5 +1,6 @@
 package cn.book.servlet;
 
+import cn.book.pojo.Book;
 import cn.book.service.FileService;
 import cn.book.service.FileServiceImpl;
 import cn.book.pojo.User;
@@ -23,17 +24,16 @@ public class FileServlet extends HttpServlet {
     public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
         String deal = req.getParameter("action");
         FileService fs = new FileServiceImpl();
+        String admId = req.getParameter("admid");
+        User user = fs.getAdmainUser(admId);
+
         if (deal.equals("search")){
-            String admid = req.getParameter("admid");
+
             String goalFile = req.getParameter("goalFile");
-            User admUser = fs.getAdmainUser(admid);
-
             User goalUserFile = fs.getAdmainUser(goalFile);
-            System.out.println(goalUserFile);
-
             List<User> list = new ArrayList<User>();
             list.add(goalUserFile);
-            req.setAttribute("user",admUser);
+            req.setAttribute("user",user);
             if(goalUserFile!=null){
                 req.setAttribute("arr",list);
             }
@@ -42,7 +42,38 @@ public class FileServlet extends HttpServlet {
             req.setAttribute("mainRight","userFile.jsp");
             req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
         }
+        else if(deal.equals("goUserShow")){
+//访问用户管理界面
+            List <User> arr = fs.getAllUser();
+            req.setAttribute("arr",arr);
+            req.setAttribute("user",user);
+            req.setAttribute("mainRight","userFile.jsp");
+            req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
+        }
+        else if(deal.equals("booksearch")){
+//            window.location.href = "fileServlet?action=booksearch&admid="+admId+"&goalFile="+goalFile;
+//            获取图书
 
+            String goalFile =req.getParameter("goalFile");
+            List <Book> arr = fs.getBookByNameOrId(goalFile);
+
+            req.setAttribute("arr",arr);
+            req.setAttribute("user",user);
+            req.setAttribute("mainRight","book.jsp");
+            req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
+        }
+        else if(deal.equals("findAllFile")){
+//            window.location.href = "action=findAllFile?admid=${user.getUid()}&bookid="+v;
+//            找图书所有信息
+            String bookId = req.getParameter("bookid");
+            Book book = fs.getBookByNameOrId(bookId).get(0);
+
+            req.setAttribute("book",book);
+            req.setAttribute("user",user);
+            req.setAttribute("mainRight","bookshow.jsp");
+            req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
+
+        }
 
 
 

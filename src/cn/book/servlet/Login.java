@@ -1,5 +1,6 @@
 package cn.book.servlet;
 
+import cn.book.pojo.Book;
 import cn.book.pojo.User;
 import cn.book.service.FileService;
 import cn.book.service.FileServiceImpl;
@@ -39,10 +40,13 @@ public class Login extends HttpServlet {
             req.setAttribute("user",user);
 
             FileService fl = new FileServiceImpl();
-            List<User> arr = fl.getAllUser();
-            req.setAttribute("arr",arr);
+            List<Book> arr = fl.getAllBook();
+            for(int i=0;i<arr.size();i++){
+                System.out.println(arr.get(i));
+            }
 
-            req.setAttribute("mainRight","userFile.jsp");
+            req.setAttribute("arr",arr);
+            req.setAttribute("mainRight","book.jsp");
             req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
 
         }

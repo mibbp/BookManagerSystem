@@ -62,10 +62,8 @@
             <button id="btn01" onclick="search()" >查询</button>
             <script>
                 function search(){
-                    alert("a");
                     let goalFile = document.getElementById("sea").value;
                     let admId = ${user.getUid()};
-                    alert(admId);
                     window.location.href = "fileServlet?action=search&admid="+admId+"&goalFile="+goalFile;
 
                 }

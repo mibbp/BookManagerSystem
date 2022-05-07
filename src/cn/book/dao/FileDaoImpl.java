@@ -1,5 +1,6 @@
 package cn.book.dao;
 
+import cn.book.pojo.Book;
 import cn.book.pojo.User;
 
 import java.sql.*;
@@ -127,5 +128,132 @@ public class FileDaoImpl implements FileDao{
 
         return u;
 
+    }
+
+    @Override
+    public List<Book> getAllBook() {
+        List <Book> arr = new ArrayList<Book>();
+
+        String url = "jdbc:sqlserver://localhost:1433;databaseName=book";
+        Connection connection;
+
+        try {
+            try {
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            connection = DriverManager.getConnection(url,"sa","llh2002908");
+
+            PreparedStatement pre = null;
+            Statement stat = connection.createStatement();//创建一个 Statement 对象来将 SQL 语句发送到数据库。
+//            ResultSet res=stat.executeQuery("select * from [dbo].[user]");
+            ResultSet res = null;
+            String sql="select * from [dbo].[books]";
+            try {
+                pre = connection.prepareStatement(sql);
+                res=pre.executeQuery();
+                while(res.next()){
+                    Book book = new Book();
+                    book.setBook_id(res.getString("book_id"));
+                    book.setBook_name(res.getString("book_name"));
+                    book.setBook_type(res.getString("book_type"));
+                    book.setBook_num(res.getInt("book_num"));
+                    book.setBook_price(res.getDouble("book_price"));
+                    book.setBook_lend(res.getInt("book_lend"));
+                    book.setBook_ISBN(res.getString("book_ISBN"));
+                    book.setBook_address(res.getString("book_address"));
+                    book.setBook_author(res.getString("book_author"));
+                    book.setBook_edition(res.getString("book_edition"));
+                    book.setBook_times(res.getInt("book_times"));
+
+
+                    arr.add(book);
+                }
+
+
+
+            } catch (SQLException throwables){
+                throwables.printStackTrace();
+            }
+
+//            while (rs.next()) {
+//                System.out.println(rs.getString("u_name"));
+//            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            System.out.println("catch");
+            e.printStackTrace();
+        }// 连接数据库cpp
+
+
+
+
+
+        return arr;
+    }
+
+    @Override
+    public List<Book> getBookByNameOrId(String goalFile) {
+        List <Book> arr = new ArrayList<Book>();
+
+        String url = "jdbc:sqlserver://localhost:1433;databaseName=book";
+        Connection connection;
+
+        try {
+            try {
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            connection = DriverManager.getConnection(url,"sa","llh2002908");
+
+            PreparedStatement pre = null;
+            Statement stat = connection.createStatement();//创建一个 Statement 对象来将 SQL 语句发送到数据库。
+//            ResultSet res=stat.executeQuery("select * from [dbo].[user]");
+            ResultSet res = null;
+//Select * From [dbo].[books] Where book_id ='b' OR book_name Like '%Java%';
+            String sql="select * from [dbo].[books] Where book_id ='"+goalFile+"' OR book_name Like '%"+goalFile+"%' OR book_type like '%"+goalFile+"%'";
+            try {
+                pre = connection.prepareStatement(sql);
+                res=pre.executeQuery();
+                while(res.next()){
+                    Book book = new Book();
+                    book.setBook_id(res.getString("book_id"));
+                    book.setBook_name(res.getString("book_name"));
+                    book.setBook_type(res.getString("book_type"));
+                    book.setBook_num(res.getInt("book_num"));
+                    book.setBook_price(res.getDouble("book_price"));
+                    book.setBook_lend(res.getInt("book_lend"));
+                    book.setBook_ISBN(res.getString("book_ISBN"));
+                    book.setBook_address(res.getString("book_address"));
+                    book.setBook_author(res.getString("book_author"));
+                    book.setBook_edition(res.getString("book_edition"));
+                    book.setBook_times(res.getInt("book_times"));
+
+
+                    arr.add(book);
+                }
+
+
+
+            } catch (SQLException throwables){
+                throwables.printStackTrace();
+            }
+
+//            while (rs.next()) {
+//                System.out.println(rs.getString("u_name"));
+//            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            System.out.println("catch");
+            e.printStackTrace();
+        }// 连接数据库cpp
+
+
+
+
+
+        return arr;
     }
 }

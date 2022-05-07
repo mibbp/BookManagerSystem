@@ -49,10 +49,19 @@
         <button id="c">增加图书</button>
         <button id="d">查看借阅</button>
         <button id="e">借阅记录</button>
-        <button id="f">用户管理</button>
+        <button id="f" onclick="goUserShow()">用户管理</button>
         <button id="g">退出系统</button>
 
     </div>
+    <script>
+        function goUserShow(){
+            window.location.href = "fileServlet?action=goUserShow&admid="+${user.getUid()};
+
+        }
+
+
+
+    </script>
 
 
 </div>
