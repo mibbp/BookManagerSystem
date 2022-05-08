@@ -47,7 +47,7 @@
         <button id="a" onclick="goHead()">回到首页</button>
         <button id="b" onclick="goBookManage()">图书管理</button>
         <button id="c" onclick="goBookAdd()">增加图书</button>
-        <button id="d">查看借阅</button>
+<%--        <button id="d">查看借阅</button>--%>
         <button id="e">借阅记录</button>
         <button id="f" onclick="goUserShow()">用户管理</button>
         <button id="g">退出系统</button>
@@ -59,9 +59,9 @@
 
         }
         function goBookManage(){
-            alert("333")
+            // alert("333")
             window.location.href = "fileServlet?action=goBookManage&admid="+${user.getUid()};
-            alert("555")
+            // alert("555")
 
         }
         function goHead(){

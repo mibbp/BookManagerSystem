@@ -11,6 +11,9 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+    <script>
+      window.location.href = "login.jsp"
+
+    </script>
   </body>
 </html>

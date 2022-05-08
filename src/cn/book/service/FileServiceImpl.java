@@ -2,6 +2,7 @@ package cn.book.service;
 import cn.book.dao.FileDao;
 import cn.book.dao.FileDaoImpl;
 import cn.book.pojo.Book;
+import cn.book.pojo.BookLendType;
 import cn.book.pojo.User;
 import java.util.Set;
 import java.util.List;
@@ -40,6 +41,11 @@ public class FileServiceImpl implements FileService{
     @Override
     public void addBook(String a, String b, String c, String d, String e, String f, String g, String h, String l) {
         fd.addBook(a,b,c,d,e,f,g,h,l);
+    }
+
+    @Override
+    public List<BookLendType> getLendFile(String bookid) {
+        return fd.getLendFile(bookid);
     }
 
 

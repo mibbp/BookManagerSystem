@@ -1,6 +1,7 @@
 package cn.book.dao;
 
 import cn.book.pojo.Book;
+import cn.book.pojo.BookLendType;
 import cn.book.pojo.User;
 
 import java.util.Set;
@@ -18,4 +19,6 @@ public interface FileDao {
     void upBookNum(String bookId, String number, String price);
 
     void addBook(String a, String b, String c, String d, String e, String f, String g, String h, String l);
+
+    List<BookLendType> getLendFile(String bookid);
 }

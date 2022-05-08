@@ -1,6 +1,7 @@
 package cn.book.servlet;
 
 import cn.book.pojo.Book;
+import cn.book.pojo.BookLendType;
 import cn.book.service.FileService;
 import cn.book.service.FileServiceImpl;
 import cn.book.pojo.User;
@@ -139,6 +140,28 @@ public class FileServlet extends HttpServlet {
             req.setAttribute("mainRight","show.jsp");
             req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
             System.out.println("222");
+
+        }
+        else if(deal.equals("lookLend")){
+//            window.location.href "fileServlet?action=lookLend&admid=${user.getUid()}&bookid="+n;
+            String bookid = req.getParameter("bookid");
+
+            List <BookLendType> arr = fs.getLendFile(bookid);
+
+//            for (int i=0;i<arr.size();i++){
+//                System.out.println(arr.get(i));
+//            }
+
+            req.setAttribute("arr",arr);
+            req.setAttribute("user",user);
+
+
+
+
+
+
+            req.setAttribute("mainRight","bookLend.jsp");
+            req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
 
         }
 

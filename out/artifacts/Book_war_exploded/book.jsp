@@ -80,14 +80,15 @@
     </div>
     <br><br><br><br><br><br>
 
-    <table border="1" cellspacing="0" ; style="padding-left:80px; border: blueviolet">
+    <table border="1" cellspacing="0" ; style="padding-left:10px; border: blueviolet">
         <tr>
             <td>图书编号</td>
             <td>图书名称</td>
             <td>图书类别</td>
             <td>图书总数</td>
             <td>借出总数</td>
-            <td>详细信息</td>
+            <td>图书操作</td>
+            <td>查看借阅</td>
         </tr>
 
         <c:forEach items="${arr}" var="book" >
@@ -97,7 +98,12 @@
                 <td>${book.getBook_type()}</td>
                 <td>${book.getBook_num()}</td>
                 <td>${book.getBook_lend()}</td>
-                <td><button onclick="toUpBook('${book.getBook_id()}')">修改</button> <button onclick="findAllFile('${book.getBook_id()}')">查看详细信息</button></td>
+                <td><button onclick="toUpBook('${book.getBook_id()}')">修改</button>
+                    <button onclick="findAllFile('${book.getBook_id()}')">查看信息</button>
+                </td>
+                <td>
+                    <button onclick="lookLend('${book.getBook_id()}')">查看借阅</button>
+                </td>
 
             </tr>
         </c:forEach>
@@ -108,6 +114,9 @@
             }
             function toUpBook(m){
                 window.location.href = "fileServlet?action=toUpBook&admid=${user.getUid()}&bookid="+m;
+            }
+            function lookLend(n){
+                window.location.href = "fileServlet?action=lookLend&admid=${user.getUid()}&bookid="+n;
             }
 
         </script>

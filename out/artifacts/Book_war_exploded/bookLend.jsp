@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: mibbp
   Date: 2022/5/6
-  Time: 21:07
+  Time: 14:01
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -64,7 +64,7 @@
             function search(){
                 let goalFile = document.getElementById("sea").value;
                 let admId = ${user.getUid()};
-                window.location.href = "fileServlet?action=booksearch&admid="+admId+"&goalFile="+goalFile;
+                window.location.href = "fileServlet?action=search&admid="+admId+"&goalFile="+goalFile;
 
             }
 
@@ -80,46 +80,25 @@
     </div>
     <br><br><br><br><br><br>
 
-    <table border="1" cellspacing="0" ; style="padding-left:10px; border: blueviolet">
+    <table border="1" cellspacing="0" ; style="padding-left:80px; border: blueviolet">
         <tr>
-            <td>图书编号</td>
-            <td>图书名称</td>
-            <td>图书类别</td>
-            <td>图书总数</td>
-            <td>借出总数</td>
-            <td>图书操作</td>
-            <td>查看借阅</td>
+            <td>借阅编号</td>
+            <td>借阅用户</td>
+            <td>借阅时间</td>
+            <td>还书时间</td>
+            <td>归还状态</td>
         </tr>
 
-        <c:forEach items="${arr}" var="book" >
+        <c:forEach items="${arr}" var="lbook" >
             <tr>
-                <td>${book.getBook_id()}</td>
-                <td>${book.getBook_name()}</td>
-                <td>${book.getBook_type()}</td>
-                <td>${book.getBook_num()}</td>
-                <td>${book.getBook_lend()}</td>
-                <td><button onclick="toUpBook('${book.getBook_id()}')">修改</button>
-                    <button onclick="findAllFile('${book.getBook_id()}')">查看信息</button>
-                </td>
-                <td>
-                    <button onclick="lookLend('${book.getBook_id()}')">查看借阅</button>
-                </td>
-
+                <td>${lbook.getLend_id()}</td>
+                <td>${lbook.getLend_name()}</td>
+                <td>${lbook.getLend_ltime()}</td>
+                <td>${lbook.getLend_rtime()}</td>
+                <td>${lbook.getLend_type()}</td>
             </tr>
         </c:forEach>
-        <script>
-            function findAllFile(v){
-                //v查看书id
-                window.location.href = "fileServlet?action=findAllFile&admid=${user.getUid()}&bookid="+v;
-            }
-            function toUpBook(m){
-                window.location.href = "fileServlet?action=toUpBook&admid=${user.getUid()}&bookid="+m;
-            }
-            function lookLend(n){
-                window.location.href = "fileServlet?action=lookLend&admid=${user.getUid()}&bookid="+n;
-            }
 
-        </script>
 
     </table>
 </div>
