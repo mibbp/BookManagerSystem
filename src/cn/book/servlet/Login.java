@@ -45,7 +45,9 @@ public class Login extends HttpServlet {
                 req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
             }
             else{
-                System.out.println("去用户界面");
+                req.setAttribute("user",user);
+                req.setAttribute("mainRight","usershow.jsp");
+                req.getRequestDispatcher("UserMain.jsp").forward(req,res);
             }
 
         }

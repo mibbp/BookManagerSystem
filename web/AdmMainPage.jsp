@@ -76,8 +76,8 @@
         }
 
         function logout(){
-            if (window.confirm("Do you really want to leave?")) {
-                window.open("login.jsp", "Thanks for Visiting!");
+            if (window.confirm("确认要退出系统吗？")) {
+                window.open("login.jsp", "感谢使用");
             }
         }
 
