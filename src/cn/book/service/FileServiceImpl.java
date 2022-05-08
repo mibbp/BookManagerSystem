@@ -48,5 +48,10 @@ public class FileServiceImpl implements FileService{
         return fd.getLendFile(bookid);
     }
 
+    @Override
+    public List<BookLendType> getLendFileByUserName(String username) {
+        return fd.getLendFileByUserName(username);
+    }
+
 
 }

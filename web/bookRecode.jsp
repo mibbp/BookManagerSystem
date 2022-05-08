@@ -16,7 +16,7 @@
             border: blueviolet 1px solid;
             position: absolute;
         }
-        #sea{
+        #recodeSearch{
             width: 300px;
             height: 40px;
             border: darkorchid 2px solid;
@@ -58,13 +58,14 @@
 <body>
 <div id="frame">
     <div id="search">
-        <input type="text" id="sea">
+        <input type="text" id="recodeSearch">
         <button id="btn01" onclick="search()" >查询</button>
         <script>
             function search(){
-                let goalFile = document.getElementById("sea").value;
+
+                let goalFile = document.getElementById("recodeSearch").value;
                 let admId = ${user.getUid()};
-                window.location.href = "fileServlet?action=search&admid="+admId+"&goalFile="+goalFile;
+                window.location.href = "fileServlet?action=recodeSearch&admid="+admId+"&goalFile="+goalFile;
 
             }
 
@@ -86,7 +87,27 @@
             <td>借阅图书</td>
             <td>借阅时间</td>
             <td>还书时间</td>
-            <td>归还状态</td>
+            <td>
+                <button onclick="retBook()">归还</button>
+                <button onclick="unretBook()">未还</button>
+                <button onclick="allBook()">全部</button>
+            </td>
+
+            <script>
+                function retBook(){
+                    window.location.href = "fileServlet?action=retBook&admid="+${user.getUid()};
+                }
+                function unretBook(){
+                    window.location.href = "fileServlet?action=unretBook&admid="+${user.getUid()};
+                }
+                function allBook(){
+                    window.location.href = "fileServlet?action=all&admid="+${user.getUid()};
+                }
+
+
+            </script>
+
+
         </tr>
 
         <c:forEach items="${arr}" var="lbook" >

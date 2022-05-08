@@ -150,12 +150,6 @@ public class FileServlet extends HttpServlet {
 
             req.setAttribute("arr",arr);
             req.setAttribute("user",user);
-
-
-
-
-
-
             req.setAttribute("mainRight","bookLend.jsp");
             req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
 
@@ -164,23 +158,38 @@ public class FileServlet extends HttpServlet {
 //             window.location.href = "fileServlet?action=goLendRecord&admid="+${user.getUid()};
 //              查找用户借阅记录
             req.setAttribute("user",user);
-            List <BookLendType> arr = fs.getLendFile(null);
-
-
-//            for(int i=0;i<arr.size();i++){
-//                System.out.println(arr.get(i));
-//            }
-
+            List <BookLendType> arr = fs.getLendFile("all");
             req.setAttribute("arr",arr);
 
 
             req.setAttribute("mainRight","bookRecode.jsp");
             req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
         }
-//        else if(deal.equals("logout")){
-////            window.location.href = "fileServlet?action=logout&admid="+${user.getUid()};
-//
-//        }
+        else if(deal.equals("retBook")||deal.equals("unretBook")||deal.equals("all")){
+//             window.location.href = "fileServlet?action=retBook&admid="+admId;
+//            根据deal分支
+            List <BookLendType> arr = fs.getLendFile(deal);
+
+            req.setAttribute("user",user);
+            req.setAttribute("arr",arr);
+            req.setAttribute("mainRight","bookRecode.jsp");
+            req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
+
+        }
+        else if(deal.equals("recodeSearch")){
+//            window.location.href = "fileServlet?action=recodeSearch&admid="+admId+"&goalFile="+goalFile;
+            String Username = req.getParameter("goalFile");
+            List <BookLendType> arr = fs.getLendFileByUserName(Username);
+            for (int i=0;i<arr.size();i++){
+                System.out.println(arr.get(i));
+            }
+            req.setAttribute("user",user);
+            req.setAttribute("arr",arr);
+            req.setAttribute("mainRight","bookRecode.jsp");
+            req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
+
+
+        }
 
 
 

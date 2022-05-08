@@ -86,7 +86,25 @@
             <td>借阅用户</td>
             <td>借阅时间</td>
             <td>还书时间</td>
-            <td>归还状态</td>
+            <td>
+                <button onclick="retBook()">归还</button>
+                <button onclick="unretBook()">未还</button>
+                <button onclick="allBook()">全部</button>
+            </td>
+
+            <script>
+                function retBook(){
+                    window.location.href = "fileServlet?action=retBook&admid="+${user.getUid()};
+                }
+                function unretBook(){
+                    window.location.href = "fileServlet?action=unretBook&admid="+${user.getUid()};
+                }
+                function allBook(){
+                    window.location.href = "fileServlet?action=all&admid="+${user.getUid()};
+                }
+
+
+            </script>
         </tr>
 
         <c:forEach items="${arr}" var="lbook" >

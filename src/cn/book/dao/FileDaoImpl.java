@@ -286,26 +286,11 @@ UPDATE [dbo].[books] set book_num=10,book_price=24 where book_id='b101121';
         deal(sql);
     }
 
-    @Override
-    public List<BookLendType> getLendFile(String bookid) {
-        String sql = null;
-        if(bookid==null){
-            sql = "Select l_id AS a,book_name AS b,l_ltime AS c ,r_rtime AS d, case l_state when 0 then '未归还'  when 1 then '已归还' else '查询不到信息' end AS e" +
-                    " From [dbo].[booklend] Join [dbo].[books] on l_bookid=book_id";
-
-        }
-        else{
-            sql = "Select u_name AS a, book_name AS b,l_ltime AS c,r_rtime AS d," +
-                    "case l_state when 0 then '未归还'  when 1 then '已归还' else '查询不到信息' end AS e " +
-                    "From [dbo].[booklend] Join[dbo].[user] on l_uid=u_id Join [dbo].[books] on l_bookid=book_id " +
-                    "Where book_id='"+bookid+"'";
-        }
-
-
+    public List<BookLendType> getLendFiles(String sql){
         String url = "jdbc:sqlserver://localhost:1433;databaseName=book";
         Connection connection;
         List<BookLendType> list = null;
-//        System.out.println(sql);
+        System.out.println(sql);
         try {
             try {
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -346,6 +331,45 @@ UPDATE [dbo].[books] set book_num=10,book_price=24 where book_id='b101121';
         }// 连接数据库cpp
 
         return list;
+    }
+
+
+    @Override
+    public List<BookLendType> getLendFile(String bookid) {
+        String sql = null;
+        System.out.println(bookid);
+        if(bookid.equals("all")){
+            sql = "Select l_id AS a,book_name AS b,l_ltime AS c ,r_rtime AS d, case l_state when 0 then '未归还'  when 1 then '已归还' else '查询不到信息' end AS e" +
+                    " From [dbo].[booklend] Join [dbo].[books] on l_bookid=book_id";
+
+        }
+        else if(bookid.equals("retBook")){
+            //还
+            sql = "Select l_id AS a,book_name AS b,l_ltime AS c ,r_rtime AS d, case l_state when 0 then '未归还'  when 1 then '已归还' else '查询不到信息' end AS e" +
+                    " From [dbo].[booklend] Join [dbo].[books] on l_bookid=book_id "+"Where l_state=0";
+        }
+        else if(bookid.equals("unretBook")){
+            sql = "Select l_id AS a,book_name AS b,l_ltime AS c ,r_rtime AS d, case l_state when 0 then '未归还'  when 1 then '已归还' else '查询不到信息' end AS e" +
+                    " From [dbo].[booklend] Join [dbo].[books] on l_bookid=book_id "+"Where l_state=1";
+        }
+        else{
+            sql = "Select u_name AS a, book_name AS b,l_ltime AS c,r_rtime AS d," +
+                    "case l_state when 0 then '未归还'  when 1 then '已归还' else '查询不到信息' end AS e " +
+                    "From [dbo].[booklend] Join[dbo].[user] on l_uid=u_id Join [dbo].[books] on l_bookid=book_id " +
+                    "Where book_id='"+bookid+"'";
+        }
+
+
+        return getLendFiles(sql);
+    }
+
+    @Override
+    public List<BookLendType> getLendFileByUserName(String username) {
+        String sql="Select l_id a,book_name b,l_ltime c,r_rtime d,case l_state when 0 then '未归还'  when 1 then '已归还' else '查询不到信息' end e"
+                + " From [dbo].[booklend] Join [dbo].[user] on l_uid = u_id Join [dbo].[books] on l_bookid=book_id" +
+                " Where u_name ='"+username+"'";
+//        System.out.println(sql);
+        return getLendFiles(sql);
     }
 
     private void deal(String sql) {

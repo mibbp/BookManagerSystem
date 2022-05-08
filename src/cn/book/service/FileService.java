@@ -21,4 +21,7 @@ public interface FileService {
     void addBook(String a, String b, String c, String d, String e, String f, String g, String h, String l);
 
     List<BookLendType> getLendFile(String bookid);
+
+
+    List<BookLendType> getLendFileByUserName(String username);
 }
