@@ -10,6 +10,9 @@
 <head>
     <title>Title</title>
     <style>
+        #top{
+            margin-left: 300px;
+        }
         #search{
             width: 1224px;
             height: 100px;
@@ -37,7 +40,8 @@
             /*border: red 1px solid;*/
             float:right;
             margin-right: 30px;
-            margin-top: 20px;
+            /*margin-top: 20px;*/
+            margin-bottom: 50px;
             padding-top: 5px;
         }
         tr{
@@ -57,9 +61,30 @@
 </head>
 <body>
 <div id="frame">
+    <div id="top">
+        <button onclick="retBook()" style="width: 200px">归还</button>
+        <button onclick="unretBook()" style="width: 200px">未还</button>
+        <button onclick="allBook()" style="width: 200px">全部</button>
+    </div>
+
+    <script>
+        function retBook(){
+            window.location.href = "fileServlet?action=retBook&admid="+${user.getUid()};
+        }
+        function unretBook(){
+            window.location.href = "fileServlet?action=unretBook&admid="+${user.getUid()};
+        }
+        function allBook(){
+            window.location.href = "fileServlet?action=all&admid="+${user.getUid()};
+        }
+
+
+    </script>
     <div id="search">
-        <input type="text" id="recodeSearch">
+
+        <input placeholder="使用人名搜索" type="text" id="recodeSearch">
         <button id="btn01" onclick="search()" >查询</button>
+
         <script>
             function search(){
 
@@ -71,15 +96,17 @@
 
 
         </script>
+
         <div id="file">
             账户:&nbsp;${user.getUid()}
             <br>
             姓名:${user.getName()}
-
-
         </div>
     </div>
-    <br><br><br><br><br><br>
+    <br><br>
+
+
+    <br><br><br><br>
 
     <table border="1" cellspacing="0" ; style="padding-left:80px; border: blueviolet">
         <tr>
@@ -87,25 +114,8 @@
             <td>借阅图书</td>
             <td>借阅时间</td>
             <td>还书时间</td>
-            <td>
-                <button onclick="retBook()">归还</button>
-                <button onclick="unretBook()">未还</button>
-                <button onclick="allBook()">全部</button>
-            </td>
+            <td>归还状态</td>
 
-            <script>
-                function retBook(){
-                    window.location.href = "fileServlet?action=retBook&admid="+${user.getUid()};
-                }
-                function unretBook(){
-                    window.location.href = "fileServlet?action=unretBook&admid="+${user.getUid()};
-                }
-                function allBook(){
-                    window.location.href = "fileServlet?action=all&admid="+${user.getUid()};
-                }
-
-
-            </script>
 
 
         </tr>

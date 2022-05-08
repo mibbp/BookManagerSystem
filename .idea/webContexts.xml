@@ -5,6 +5,7 @@
       <map>
         <entry key="file://$PROJECT_DIR$/web/main.jsp" value="file://$PROJECT_DIR$/web" />
         <entry key="file://$PROJECT_DIR$/web/upBook.jsp" value="file://$PROJECT_DIR$/web" />
+        <entry key="file://$PROJECT_DIR$/web/userFile.jsp" value="file://$PROJECT_DIR$/web" />
       </map>
     </option>
   </component>

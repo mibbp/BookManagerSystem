@@ -97,12 +97,23 @@
                 <td>${user.getIdcard()}</td>
                 <td>${user.getU_times()}</td>
                 <td>${user.getState()}</td>
-                <td><button>删除</button> <button>查看详细信息</button></td>
+                <td><button onclick="lookThisUser('${user.getName()}')">查看借阅信息</button></td>
                 </tr>
             </c:forEach>
 
 
         </table>
+        <script>
+<%--            window.location.href = "fileServlet?action=goLendRecord&admid="+${user.getUid()};--%>
+                function lookThisUser(v){
+
+                    window.location.href = "fileServlet?action=recodeSearch&admid=user.getUid()&goalFile="+v;
+
+                }
+        </script>
+
+
+
     </div>
 </body>
 </html>

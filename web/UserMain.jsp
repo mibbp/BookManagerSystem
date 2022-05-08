@@ -45,11 +45,11 @@
 <div id="BigFrame">
     <div id = "rightNavigation">
         <button id="a" onclick="goHead()">回到首页</button>
-        <button id="b" onclick="goBookManage()">图书管理</button>
-        <button id="c" onclick="goBookAdd()">增加图书</button>
+        <button id="b" onclick="goBookManage()">图书浏览</button>
+        <button id="c" onclick="goBookAdd()">我的借书</button>
 
-        <button id="e" onclick="goLendRecord()">借阅记录</button>
-        <button id="f" onclick="goUserShow()">用户管理</button>
+        <button id="e" onclick="goLendRecord()">已还记录</button>
+        <button id="f" onclick="goUserShow()">我的信息</button>
         <button id="g" onclick="logout()">退出系统</button>
 
     </div>
