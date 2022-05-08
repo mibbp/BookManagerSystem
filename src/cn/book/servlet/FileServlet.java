@@ -148,10 +148,6 @@ public class FileServlet extends HttpServlet {
 
             List <BookLendType> arr = fs.getLendFile(bookid);
 
-//            for (int i=0;i<arr.size();i++){
-//                System.out.println(arr.get(i));
-//            }
-
             req.setAttribute("arr",arr);
             req.setAttribute("user",user);
 
@@ -164,6 +160,27 @@ public class FileServlet extends HttpServlet {
             req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
 
         }
+        else if(deal.equals("goLendRecord")){
+//             window.location.href = "fileServlet?action=goLendRecord&admid="+${user.getUid()};
+//              查找用户借阅记录
+            req.setAttribute("user",user);
+            List <BookLendType> arr = fs.getLendFile(null);
+
+
+//            for(int i=0;i<arr.size();i++){
+//                System.out.println(arr.get(i));
+//            }
+
+            req.setAttribute("arr",arr);
+
+
+            req.setAttribute("mainRight","bookRecode.jsp");
+            req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
+        }
+//        else if(deal.equals("logout")){
+////            window.location.href = "fileServlet?action=logout&admid="+${user.getUid()};
+//
+//        }
 
 
 

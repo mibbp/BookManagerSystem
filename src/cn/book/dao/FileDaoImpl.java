@@ -288,10 +288,20 @@ UPDATE [dbo].[books] set book_num=10,book_price=24 where book_id='b101121';
 
     @Override
     public List<BookLendType> getLendFile(String bookid) {
-        String sql = "Select u_name AS a, book_name AS b,l_ltime AS c,r_rtime AS d," +
-                "case l_state when 0 then '未归还'  when 1 then '已归还' else '查询不到信息' end AS e " +
-                "From [dbo].[booklend] Join[dbo].[user] on l_uid=u_id Join [dbo].[books] on l_bookid=book_id " +
-                "Where book_id='"+bookid+"'";
+        String sql = null;
+        if(bookid==null){
+            sql = "Select l_id AS a,book_name AS b,l_ltime AS c ,r_rtime AS d, case l_state when 0 then '未归还'  when 1 then '已归还' else '查询不到信息' end AS e" +
+                    " From [dbo].[booklend] Join [dbo].[books] on l_bookid=book_id";
+
+        }
+        else{
+            sql = "Select u_name AS a, book_name AS b,l_ltime AS c,r_rtime AS d," +
+                    "case l_state when 0 then '未归还'  when 1 then '已归还' else '查询不到信息' end AS e " +
+                    "From [dbo].[booklend] Join[dbo].[user] on l_uid=u_id Join [dbo].[books] on l_bookid=book_id " +
+                    "Where book_id='"+bookid+"'";
+        }
+
+
         String url = "jdbc:sqlserver://localhost:1433;databaseName=book";
         Connection connection;
         List<BookLendType> list = null;

@@ -47,10 +47,10 @@
         <button id="a" onclick="goHead()">回到首页</button>
         <button id="b" onclick="goBookManage()">图书管理</button>
         <button id="c" onclick="goBookAdd()">增加图书</button>
-<%--        <button id="d">查看借阅</button>--%>
-        <button id="e">借阅记录</button>
+
+        <button id="e" onclick="goLendRecord()">借阅记录</button>
         <button id="f" onclick="goUserShow()">用户管理</button>
-        <button id="g">退出系统</button>
+        <button id="g" onclick="logout()">退出系统</button>
 
     </div>
     <script>
@@ -70,6 +70,18 @@
         function goBookAdd(){
             window.location.href = "fileServlet?action=goBookAdd&admid="+${user.getUid()};
         }
+        function goLendRecord(){
+            window.location.href = "fileServlet?action=goLendRecord&admid="+${user.getUid()};
+
+        }
+
+        function logout(){
+            if (window.confirm("Do you really want to leave?")) {
+                window.open("login.jsp", "Thanks for Visiting!");
+            }
+
+        }
+
 
 
 
