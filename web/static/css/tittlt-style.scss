@@ -1,0 +1,30 @@
+
+h2{
+  margin-top: 10px;
+  margin-left: 120px;
+  font-size: 50px;
+  position: absolute;
+}
+.wave{
+  color: #F0FFFF;
+  animation: wave 3s ease-in-out  infinite;
+}
+.border{
+  color: #BDEDFF;
+
+  text-shadow:
+          -1px -1px 0 white,
+          1px -1px 0 white,
+          -1px 1px 0 white,
+          1px 1px 0 white;
+}
+@keyframes wave{
+  0%,100%{
+    clip-path: polygon(0% 47%,10% 48%,28% 54%,54% 50%,50% 61%,
+            84% 59%,100% 52%,100% 100%,0% 100%);
+  }
+  50%{
+    clip-path: polygon(0% 60%,15% 65%,34% 66%,51% 62%,
+            67% 50%,84% 45%,100% 46%,100% 100%,0% 100%);
+  }
+}

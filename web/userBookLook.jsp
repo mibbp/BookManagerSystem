@@ -98,7 +98,7 @@
                 <td>${book.getBook_type()}</td>
                 <td>${book.getBook_num()}</td>
                 <td>${book.getBook_lend()}</td>
-                <td><button onclick="toUpBook('${book.getBook_id()}')">借书</button>
+                <td><button onclick="lendBook('${book.getBook_id()}','${book.getBook_num()}','${book.getBook_lend()}')">借书</button>
                 </td>
                 <td>
                     <button onclick="lookbookall('${book.getBook_id()}')">查看信息</button>
@@ -119,6 +119,17 @@
             }
             function lookbookall(v){
                 window.location.href = "ufiledeal?action=lookbookall&myid=+${user.getUid()}&sign="+v;
+            }
+            function lendBook(m,x,y){
+                let cou = x - y;
+                // alert(cou)
+                if(cou<=0){
+                    alert("图书已全部借出")
+                }
+                else{
+                    window.location.href = "ufiledeal?action=lendBook&myid=${user.getUid()}&bookid="+m;
+                }
+
             }
 
         </script>

@@ -372,6 +372,115 @@ UPDATE [dbo].[books] set book_num=10,book_price=24 where book_id='b101121';
         return getLendFiles(sql);
     }
 
+    @Override
+    public void lendBook(String bookid,int lendnum,int times) {
+        String sql = "Update [dbo].[books] Set book_lend="+lendnum+",book_times="+times+" where book_id = '"+bookid+"'";
+        System.out.println(sql);
+        deal(sql);
+    }
+
+    @Override
+    public void addLendRecode(String l_id, String bookid, String uid, String ltime) {
+        String sql ="Insert Into [dbo].[booklend] Values('"+l_id+"','"+bookid+"','"+uid+"','"+ltime+"',NULL,0)";
+        deal(sql);
+    }
+
+    @Override
+    public List<BookLendType> getUserfullLendFile(String uid) {
+        String sql="Select l_id a,book_name b,l_ltime c,r_rtime d,case l_state when 0 then '未归还'  when 1 then '已归还' else '查询不到信息' end e" +
+                " From [dbo].[booklend] Join [dbo].[user] on l_uid = u_id Join [dbo].[books] on l_bookid=book_id" +
+                " Where l_uid ='"+uid+"'";
+        System.out.println(sql);
+        return getLendFiles(sql);
+    }
+
+    @Override
+    public String getBookid(String lendid) {
+        String sql = "Select l_bookid AS a From [dbo].[booklend] Where l_id ='"+lendid+"'";
+        String url = "jdbc:sqlserver://localhost:1433;databaseName=book";
+        Connection connection;
+        List<BookLendType> list = null;
+        System.out.println(sql);
+        String bookid = null;
+        try {
+            try {
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            connection = DriverManager.getConnection(url,"sa","llh2002908");
+
+            PreparedStatement pre = null;
+            Statement stat = connection.createStatement();//创建一个 Statement 对象来将 SQL 语句发送到数据库。
+            ResultSet res = null;
+            try {
+                list = new ArrayList<BookLendType>();
+                pre = connection.prepareStatement(sql);
+                res=pre.executeQuery();
+                while(res.next()){
+                    bookid = res.getString("a");
+                }
+            } catch (SQLException throwables){
+                System.out.println("catch1");
+                throwables.printStackTrace();
+            }
+
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            System.out.println("catch");
+            e.printStackTrace();
+        }// 连接数据库cpp
+        return bookid;
+    }
+
+    @Override
+    public void retBook(String lendid, String time) {
+        String sql="Update [dbo].[booklend] Set r_rtime = '"+time+"',l_state=1 Where l_id='"+lendid+"'";
+        deal(sql);
+    }
+
+    @Override
+    public void reduce(String bookid) {
+        String sql = "Update [dbo].[books] Set book_lend = book_lend-1 Where book_id = '"+bookid+"'";
+        deal(sql);
+    }
+
+    @Override
+    public List<BookLendType> getMyLendFile(String deal, String myid) {
+
+        String sql = null;
+//        System.out.println(deal);
+        if(deal.equals("all")){
+            sql = "Select l_id AS a,book_name AS b,l_ltime AS c ,r_rtime AS d, case l_state when 0 then '未归还'  when 1 then '已归还' else '查询不到信息' end AS e" +
+                    " From [dbo].[booklend] Join [dbo].[books] on l_bookid=book_id AND l_uid ='"+myid+"'";
+
+        }
+        else if(deal.equals("retBook")){
+            //还
+            sql = "Select l_id AS a,book_name AS b,l_ltime AS c ,r_rtime AS d, case l_state when 0 then '未归还'  when 1 then '已归还' else '查询不到信息' end AS e" +
+                    " From [dbo].[booklend] Join [dbo].[books] on l_bookid=book_id "+"Where l_state=1 AND l_uid ='"+myid+"'";
+        }
+        else if(deal.equals("unretBook")){
+            sql = "Select l_id AS a,book_name AS b,l_ltime AS c ,r_rtime AS d, case l_state when 0 then '未归还'  when 1 then '已归还' else '查询不到信息' end AS e" +
+                    " From [dbo].[booklend] Join [dbo].[books] on l_bookid=book_id "+"Where l_state=0 AND l_uid ='"+myid+"'";
+        }
+
+
+
+        return getLendFiles(sql);
+
+
+
+    }
+
+    @Override
+    public void uppwd(String pwd, String myid, String name, String sex, String idcard) {
+//        Update [dbo].[user] Set u_pwd='1',u_name='刘龙浩',u_sex='女',u_idcard ='511526200301130510' Where u_id='1'
+        String sql="Update [dbo].[user] Set u_pwd='"+pwd+"',u_name='"+name+"',u_sex='"+sex+"',u_idcard ='"+idcard+"' Where u_id='"+myid+"'";
+        deal(sql);
+    }
+
+
     private void deal(String sql) {
         String url = "jdbc:sqlserver://localhost:1433;databaseName=book";
         Connection connection;

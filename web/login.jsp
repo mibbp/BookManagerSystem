@@ -6,16 +6,17 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>Title</title>
-
-
+    <link rel="stylesheet" href="static/css/tittlt-style.scss">
     <style>
         *{
             padding: 0%;
             margin: 0%;
             font-family: 'Open Sans Light';
+            letter-spacing: .05em;
 
         }
 
@@ -146,8 +147,10 @@
 
     <div id="frame">
         <div id="inner">
+            <h2 class="border">图书管理系统</h2>
+            <h2 class="wave">图书管理系统</h2>
             <div id="login_">
-                <div class="tittle">图书管理系统</div>
+<%--                <div class="tittle">图书管理系统</div>--%>
                 <label for="uid"></label>
                 <input placeholder="请输入账号" type="text" id="uid" name="uid" class="input-item">
                 <br><br>
@@ -155,7 +158,7 @@
                 <input placeholder="请输入密码" type="password" id="upwd" name="upwd" class="input-item">
                 <br><br>
 
-                <button id="btn01" class="btn-grad">注册</button>
+                <button id="btn01" class="btn-grad" onclick="window.open('register.jsp')">注册</button>
                 <button id="btn02" class="btn-grad" onclick="login()">登录</button>
                 <br>
                 <span id="error" style="color:red">${error}</span>

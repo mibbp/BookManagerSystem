@@ -53,5 +53,45 @@ public class FileServiceImpl implements FileService{
         return fd.getLendFileByUserName(username);
     }
 
+    @Override
+    public void lendBook(String bookid,int lendnum,int times) {
+        fd.lendBook(bookid,lendnum,times);
+    }
+
+    @Override
+    public void addLendRecode(String l_id, String bookid, String uid, String ltime) {
+        fd.addLendRecode(l_id,bookid,uid,ltime);
+    }
+
+    @Override
+    public List<BookLendType> getUserfullLendFile(String uid) {
+        return fd.getUserfullLendFile(uid);
+    }
+
+    @Override
+    public String getBookid(String lendid) {
+        return fd.getBookid(lendid);
+    }
+
+    @Override
+    public void retBook(String lendid, String time) {
+        fd.retBook(lendid,time);
+    }
+
+    @Override
+    public void reduce(String bookid) {
+        fd.reduce(bookid);
+    }
+
+    @Override
+    public List<BookLendType> getMyLendFile(String deal, String myid) {
+        return fd.getMyLendFile(deal,myid);
+    }
+
+    @Override
+    public void uppwd(String pwd, String myid, String name, String sex, String idcard) {
+        fd.uppwd(pwd,myid,name,sex,idcard);
+    }
+
 
 }

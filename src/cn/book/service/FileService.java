@@ -24,4 +24,21 @@ public interface FileService {
 
 
     List<BookLendType> getLendFileByUserName(String username);
+
+    void lendBook(String bookid,int lendnum,int times);
+
+    void addLendRecode(String l_id, String bookid, String uid, String ltime);
+
+    List<BookLendType> getUserfullLendFile(String uid);
+
+    String getBookid(String lendid);
+
+    void retBook(String lendid, String time);
+
+    void reduce(String bookid);
+
+    List<BookLendType> getMyLendFile(String deal, String myid);
+
+
+    void uppwd(String pwd, String myid, String name, String sex, String idcard);
 }
