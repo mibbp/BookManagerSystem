@@ -40,4 +40,6 @@ public interface FileDao {
 
 
     void uppwd(String pwd, String myid, String name, String sex, String idcard);
+
+    void lendcard(String myid, String card_id);
 }

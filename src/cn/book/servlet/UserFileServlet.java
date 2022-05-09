@@ -147,6 +147,20 @@ public class UserFileServlet extends HttpServlet {
             req.setAttribute("mainRight", "MyFile.jsp");
             req.getRequestDispatcher("UserMain.jsp").forward(req, res);
         }
+        else if(deal.equals("goCreateLendCard")){
+//            window.location.href = "ufiledeal?action=goCreateLendCard&myid="+${user.getUid()};
+            req.setAttribute("user",user);
+            req.getRequestDispatcher("createLendCard.jsp").forward(req, res);
+        }
+        else if(deal.equals("surelendcard")){
+//            window.location.href = "ufiledeal?action=surelendcard&admid=+${user.getUid()}&a="+user_id;
+            String card_id = req.getParameter("a");
+            fs.lendcard(myid,card_id);
+
+            req.setAttribute("user",user);
+            req.setAttribute("mainRight","usershow.jsp");
+            req.getRequestDispatcher("UserMain.jsp").forward(req,res);
+        }
 
     }
 }

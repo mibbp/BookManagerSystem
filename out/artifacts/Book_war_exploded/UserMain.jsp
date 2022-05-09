@@ -17,7 +17,7 @@
             margin-top: 100px;
             margin-left: 40px;
         }
-        #a,#b,#c,#d,#e,#f,#g{
+        #a,#b,#c,#d,#e,#f,#g,#h{
             width: 150px;
             height: 35px;
             border: blueviolet 1px solid;
@@ -47,8 +47,8 @@
         <button id="a" onclick="goHead()">回到首页</button>
         <button id="b" onclick="goBookManage()">图书浏览</button>
         <button id="c" onclick="goUserLendRecode()">我的借书</button>
-
         <button id="f" onclick="goMyFile()">我的信息</button>
+        <button id="h" onclick="goCreateLendCard()">办理借书卡</button>
         <button id="g" onclick="logout()">退出系统</button>
 
     </div>
@@ -66,6 +66,9 @@
         }
         function goMyFile(){
             window.location.href = "ufiledeal?action=goMyFile&myid="+${user.getUid()};
+        }
+        function goCreateLendCard(){
+            window.location.href = "ufiledeal?action=goCreateLendCard&myid="+${user.getUid()};
         }
         function logout(){
             if (window.confirm("确认要退出系统吗？")) {

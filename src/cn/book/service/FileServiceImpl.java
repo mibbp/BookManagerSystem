@@ -93,5 +93,10 @@ public class FileServiceImpl implements FileService{
         fd.uppwd(pwd,myid,name,sex,idcard);
     }
 
+    @Override
+    public void lendcard(String myid, String card_id) {
+        fd.lendcard(myid,card_id);
+    }
+
 
 }

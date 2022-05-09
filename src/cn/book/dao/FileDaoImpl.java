@@ -480,6 +480,14 @@ UPDATE [dbo].[books] set book_num=10,book_price=24 where book_id='b101121';
         deal(sql);
     }
 
+    @Override
+    public void lendcard(String myid, String card_id) {
+//        Update [dbo].[user] Set u_lendcard ='123456' , u_state=1 Where u_id='1'
+        String sql="Update [dbo].[user] Set u_lendcard ='"+card_id+"' , u_state=1 Where u_id='"+myid+"'";
+        deal(sql);
+
+    }
+
 
     private void deal(String sql) {
         String url = "jdbc:sqlserver://localhost:1433;databaseName=book";

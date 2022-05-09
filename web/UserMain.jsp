@@ -68,7 +68,7 @@
             window.location.href = "ufiledeal?action=goMyFile&myid="+${user.getUid()};
         }
         function goCreateLendCard(){
-
+            window.location.href = "ufiledeal?action=goCreateLendCard&myid="+${user.getUid()};
         }
         function logout(){
             if (window.confirm("确认要退出系统吗？")) {
