@@ -64,7 +64,7 @@
     <script>
         function surelendcard(){
             let card_id = document.getElementById("card_id").value;
-            alert('${user.getUid()}')
+            <%--alert('${user.getUid()}')--%>
             window.location.href = "ufiledeal?action=surelendcard&myid=${user.getUid()}&a="+card_id;
 
 

@@ -150,7 +150,8 @@ public class UserFileServlet extends HttpServlet {
         else if(deal.equals("goCreateLendCard")){
 //            window.location.href = "ufiledeal?action=goCreateLendCard&myid="+${user.getUid()};
             req.setAttribute("user",user);
-            req.getRequestDispatcher("createLendCard.jsp").forward(req, res);
+            req.setAttribute("mainRight","createLendCard.jsp");
+            req.getRequestDispatcher("UserMain.jsp").forward(req,res);
         }
         else if(deal.equals("surelendcard")){
 //            window.location.href = "ufiledeal?action=surelendcard&admid=+${user.getUid()}&a="+user_id;

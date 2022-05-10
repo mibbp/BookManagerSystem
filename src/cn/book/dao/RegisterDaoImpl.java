@@ -5,7 +5,7 @@ import java.sql.*;
 public class RegisterDaoImpl implements RegisterDao{
     @Override
     public void addUser(String user_id, String user_name, String user_sex, String user_pwd) {
-        String sql="Insert into [dbo].[user] Values ('"+user_id+"','"+user_name+"','"+user_sex+"',null,0,'"+user_pwd+"',0,1)";
+        String sql="Insert into [dbo].[user] Values ('"+user_id+"','"+user_name+"','"+user_sex+"',null,0,'"+user_pwd+"',0,1,null)";
         deal(sql);
     }
     private void deal(String sql) {

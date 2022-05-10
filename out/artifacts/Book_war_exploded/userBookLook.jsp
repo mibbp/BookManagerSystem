@@ -123,12 +123,22 @@
             function lendBook(m,x,y){
                 let cou = x - y;
                 // alert(cou)
-                if(cou<=0){
-                    alert("图书已全部借出")
+                ${user.getUid()}
+                let flag = ${user.getState()}
+                if(flag==1){
+                    if(cou<=0){
+                        alert("图书已全部借出")
+                    }
+                    else{
+                        window.location.href = "ufiledeal?action=lendBook&myid=${user.getUid()}&bookid="+m;
+                    }
                 }
                 else{
-                    window.location.href = "ufiledeal?action=lendBook&myid=${user.getUid()}&bookid="+m;
+                    if (window.confirm("您还没有办理借书卡请问需要办理吗")) {
+                        window.location.href = "ufiledeal?action=goCreateLendCard&myid="+${user.getUid()};
+                    }
                 }
+
 
             }
 
