@@ -83,7 +83,13 @@ public class UserFileServlet extends HttpServlet {
         else if(deal.equals("goUserLendRecode")) {
 //            window.location.href = "ufiledeal?action=goUserLendRecode&myid="+${user.getUid()};
             List<BookLendType> arr = fs.getUserfullLendFile(user.getUid());
-
+//            int unretcou=0;
+//            for (BookLendType i : arr){
+//                if(i.getLend_rtime()==null){
+//                    unretcou++;
+//                }
+//            }
+//            req.setAttribute("unretcou",unretcou);
             req.setAttribute("arr", arr);
             req.setAttribute("user", user);
             req.setAttribute("mainRight", "userLendRecode.jsp");

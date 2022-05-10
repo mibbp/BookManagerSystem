@@ -15,5 +15,18 @@
     <div style="font-size: 80px;margin-left: 400px;margin-top: 20px;color: dimgrey">欢迎来到借书系统</div>
 
 </div>
+
+    <script>
+        let unretcou=${unretcou}
+        if(unretcou>0){
+            if (window.confirm("您有一些书已经逾期没还请尽快还书")) {
+                window.location.href = "ufiledeal?action=goUserLendRecode&myid="+${user.getUid()};
+            }
+        }
+
+
+
+
+    </script>
 </body>
 </html>

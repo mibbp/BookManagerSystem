@@ -1,6 +1,7 @@
 package cn.book.servlet;
 
 import cn.book.pojo.Book;
+import cn.book.pojo.BookLendType;
 import cn.book.pojo.User;
 import cn.book.service.FileService;
 import cn.book.service.FileServiceImpl;
@@ -23,7 +24,7 @@ public class Login extends HttpServlet {
     public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
         String id = req.getParameter("uid");
         String pwd = req.getParameter("pwd");
-
+        FileService fs = new FileServiceImpl();
         User u = new User();
         u.setUid(id);
         u.setPwd(pwd);
@@ -45,6 +46,15 @@ public class Login extends HttpServlet {
                 req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
             }
             else{
+                List<BookLendType> arr = fs.getUserfullLendFile(user.getUid());
+                int unretcou=0;
+                for (BookLendType i : arr){
+                    if(i.getLend_rtime()==null){
+                        unretcou++;
+                    }
+                }
+                req.setAttribute("unretcou",unretcou);
+
                 req.setAttribute("user",user);
                 req.setAttribute("mainRight","usershow.jsp");
                 req.getRequestDispatcher("UserMain.jsp").forward(req,res);
