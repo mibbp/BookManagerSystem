@@ -2,6 +2,7 @@ package cn.book.servlet;
 
 import cn.book.pojo.Book;
 import cn.book.pojo.BookLendType;
+import cn.book.pojo.bookbackup;
 import cn.book.service.FileService;
 import cn.book.service.FileServiceImpl;
 import cn.book.pojo.User;
@@ -12,7 +13,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @WebServlet("/fileServlet")
@@ -189,6 +192,39 @@ public class FileServlet extends HttpServlet {
             req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
 
 
+        }
+        else if(deal.equals("gobackup")){
+//            window.location.href = "fileServlet?action=gobackup&admid="+${user.getUid()};
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
+            String time = sdf.format(date);
+            System.out.println(time);
+            fs.backup(time);
+            req.setAttribute("user",user);
+            req.setAttribute("mainRight","show.jsp");
+            req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
+        }
+        else if(deal.equals("goredu")){
+//            window.location.href = "fileServlet?action=goredu&admid="+${user.getUid()};
+            List <bookbackup> arr = fs.getAllbackup();
+
+            req.setAttribute("arr",arr);
+            for(int i=0;i<arr.size();i++){
+                System.out.println(arr.get(i));
+            }
+            req.setAttribute("user",user);
+            req.setAttribute("mainRight","backUpShow.jsp");
+            req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
+
+        }
+        else if(deal.equals("")){
+//            window.location.href = "fileServlet?action=redo&admid=${user.getUid()}&backupid="+v;
+            String backupid = req.getParameter("backupid");
+            System.out.println("let"+backupid);
+            fs.redo(backupid);
+            req.setAttribute("user",user);
+            req.setAttribute("mainRight","show.jsp");
+            req.getRequestDispatcher("AdmMainPage.jsp").forward(req,res);
         }
 
 

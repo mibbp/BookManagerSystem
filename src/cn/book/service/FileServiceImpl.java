@@ -4,6 +4,8 @@ import cn.book.dao.FileDaoImpl;
 import cn.book.pojo.Book;
 import cn.book.pojo.BookLendType;
 import cn.book.pojo.User;
+import cn.book.pojo.bookbackup;
+
 import java.util.Set;
 import java.util.List;
 public class FileServiceImpl implements FileService{
@@ -96,6 +98,21 @@ public class FileServiceImpl implements FileService{
     @Override
     public void lendcard(String myid, String card_id) {
         fd.lendcard(myid,card_id);
+    }
+
+    @Override
+    public void backup(String time) {
+        fd.backup(time);
+    }
+
+    @Override
+    public List<bookbackup> getAllbackup() {
+        return fd.getAllbackup();
+    }
+
+    @Override
+    public void redo(String backupid) {
+        fd.redo(backupid);
     }
 
 

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Book:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/Book_war</output-path>
+    <root id="archive" name="Book_war.war">
+      <element id="artifact" artifact-name="Book:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="lib" />
+          <element id="file-copy" path="$PROJECT_DIR$/../sqljdbc_9.2/chs/mssql-jdbc-9.2.1.jre8.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

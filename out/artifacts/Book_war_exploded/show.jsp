@@ -9,10 +9,20 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="static/css/background-style.scss">
+    <link rel="stylesheet" href="static/css/tittlt-style.scss">
+    <style>
+        h2{
+            margin-left: 550px;
+
+        }
+
+    </style>
 </head>
 <body>
 <div id="frame" style="width: 100%;height: 700px">
-    <div style="font-size: 80px;margin-left: 400px;margin-top: 20px;color: dimgrey">欢迎来到图书管理系统</div>
+    <h2 class="border">欢迎来到图书管理系统</h2>
+    <h2 class="wave">欢迎来到图书管理系统</h2>
 
 </div>
 </body>

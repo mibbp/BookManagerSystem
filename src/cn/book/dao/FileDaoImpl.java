@@ -1,8 +1,6 @@
 package cn.book.dao;
 
-import cn.book.pojo.Book;
-import cn.book.pojo.BookLendType;
-import cn.book.pojo.User;
+import cn.book.pojo.*;
 
 import java.sql.*;
 import java.text.DecimalFormat;
@@ -486,6 +484,85 @@ UPDATE [dbo].[books] set book_num=10,book_price=24 where book_id='b101121';
         String sql="Update [dbo].[user] Set u_lendcard ='"+card_id+"' , u_state=1 Where u_id='"+myid+"'";
         deal(sql);
 
+    }
+
+    @Override
+    public void backup(String time) {
+        String sql = "Backup Database book\n" +
+                "to disk = 'C:\\Program Files\\Microsoft SQL Server\\MSSQL10.SQLEXPRESS\\MSSQL\\Backup\\book"+time+".bak'";
+        String sql1 ="Insert Into [dbo].[bookbackup] Values('"+time+"')";
+//        System.out.println(sql);
+        deal(sql);
+        deal(sql1);
+    }
+
+    @Override
+    public List<bookbackup> getAllbackup() {
+        List <bookbackup> arr = new ArrayList<bookbackup>();
+
+        String url = "jdbc:sqlserver://localhost:1433;databaseName=book";
+        Connection connection;
+
+        try {
+            try {
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            connection = DriverManager.getConnection(url,"sa","llh2002908");
+
+            PreparedStatement pre = null;
+            Statement stat = connection.createStatement();//创建一个 Statement 对象来将 SQL 语句发送到数据库。
+//            ResultSet res=stat.executeQuery("select * from [dbo].[user]");
+            ResultSet res = null;
+            String sql="select * from [dbo].[bookbackup]";
+            System.out.println(sql);
+            try {
+                pre = connection.prepareStatement(sql);
+                res=pre.executeQuery();
+                while(res.next()){
+                    bookbackup u = new bookbackup();
+
+                    u.setBackup_id(res.getString("backup_id"));
+
+                    arr.add(u);
+                }
+
+
+
+            } catch (SQLException throwables){
+                throwables.printStackTrace();
+            }
+
+//            while (rs.next()) {
+//                System.out.println(rs.getString("u_name"));
+//            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            System.out.println("catch");
+            e.printStackTrace();
+        }// 连接数据库cpp
+
+
+
+
+
+        return arr;
+
+    }
+
+    @Override
+    public void redo(String backupid) {
+//        Use Master
+//Go
+//ALTER DATABASE book SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+//restore database book from disk= 'C:\Program Files\Microsoft SQL Server\MSSQL10.SQLEXPRESS\MSSQL\Backup\book.bak' WITH REPLACE;
+//ALTER DATABASE book SET MULTI_USER WITH ROLLBACK IMMEDIATE;
+        String sql = "Use Master Go " + "ALTER DATABASE book SET SINGLE_USER WITH ROLLBACK IMMEDIATE" +
+                "restore database book from disk= 'C:\\Program Files\\Microsoft SQL Server\\MSSQL10.SQLEXPRESS\\MSSQL\\Backup\\book+"+backupid+".bak' WITH REPLACE;\n" +
+                "ALTER DATABASE book SET MULTI_USER WITH ROLLBACK IMMEDIATE";
+        System.out.println(sql);
+        deal(sql);
     }
 
 

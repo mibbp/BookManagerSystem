@@ -2,6 +2,8 @@ package cn.book.service;
 import cn.book.pojo.Book;
 import cn.book.pojo.BookLendType;
 import cn.book.pojo.User;
+import cn.book.pojo.bookbackup;
+
 import java.util.Set;
 import java.util.List;
 
@@ -43,4 +45,10 @@ public interface FileService {
     void uppwd(String pwd, String myid, String name, String sex, String idcard);
 
     void lendcard(String myid, String card_id);
+
+    void backup(String time);
+
+    List<bookbackup> getAllbackup();
+
+    void redo(String backupid);
 }

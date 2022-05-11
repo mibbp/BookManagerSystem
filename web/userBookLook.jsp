@@ -13,14 +13,14 @@
         #search{
             width: 1224px;
             height: 100px;
-            border: blueviolet 1px solid;
+            border: none;
             position: absolute;
         }
         #sea{
             width: 300px;
             height: 40px;
-            border: darkorchid 2px solid;
-            border-radius: 2px;
+            border: none;
+
             margin-left: 260px;
             margin-top: 30px;
             padding-left: 10px;
@@ -56,7 +56,7 @@
     <link rel="stylesheet" href="static/css/adm.css">
 </head>
 <body>
-<div id="frame">
+<div id="frame" style="border: none">
     <div id="search">
         <input type="text" id="sea">
         <button id="btn01" onclick="search()" >查询</button>
