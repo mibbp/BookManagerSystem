@@ -6,8 +6,8 @@ import cn.book.service.LoginServiceImpl;
 
 public class Test {
     public static void main(String[] args) {
-        String id = "202031773154";
-        String pwd = "123456";
+        String id = "---";//用自己账号密码
+        String pwd = "---";
         User u = new User();
         u.setUid(id);
         u.setPwd(pwd);
