@@ -10,7 +10,7 @@ public class RegisterDaoImpl implements RegisterDao{
         deal(sql);
     }
     private void deal(String sql) {
-        String url = "jdbc:sqlserver://112.74.80.148:11433;databaseName=book";
+        String url = "jdbc:sqlserver://(服务器地址:端口号);databaseName=book";
         Connection connection;
 
         try {
@@ -19,7 +19,7 @@ public class RegisterDaoImpl implements RegisterDao{
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            connection = DriverManager.getConnection(url,"sa","E6gps@1234");
+            connection = DriverManager.getConnection(url,"sa","密码");
 
             PreparedStatement pre = null;
             Statement stat = connection.createStatement();//创建一个 Statement 对象来将 SQL 语句发送到数据库。
