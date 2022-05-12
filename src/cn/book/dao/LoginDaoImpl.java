@@ -13,7 +13,7 @@ public class LoginDaoImpl implements LoginDao{
         String id = user.getUid();
         String pwd = user.getPwd();
 
-        String url = "jdbc:sqlserver://112.74.80.148:11433;databaseName=book";
+        String url = "jdbc:sqlserver://(服务器地址:端口号);databaseName=book";
         Connection connection;
         User u =null;
 
@@ -26,7 +26,7 @@ public class LoginDaoImpl implements LoginDao{
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            connection = DriverManager.getConnection(url,"sa","E6gps@1234");
+            connection = DriverManager.getConnection(url,"sa","密码");
 
             PreparedStatement pre = null;
             ResultSet res = null;
