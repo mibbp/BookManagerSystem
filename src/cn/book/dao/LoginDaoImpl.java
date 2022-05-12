@@ -13,7 +13,7 @@ public class LoginDaoImpl implements LoginDao{
         String id = user.getUid();
         String pwd = user.getPwd();
 
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=book";
+        String url = "jdbc:sqlserver://112.74.80.148:11433;databaseName=book";
         Connection connection;
         User u =null;
 
@@ -26,12 +26,12 @@ public class LoginDaoImpl implements LoginDao{
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            connection = DriverManager.getConnection(url,"sa","llh2002908");
+            connection = DriverManager.getConnection(url,"sa","E6gps@1234");
 
             PreparedStatement pre = null;
             ResultSet res = null;
 
-            String sql="select * from [dbo].[user] where u_id="+id+"and u_pwd = "+pwd+" ";
+            String sql="select * from [dbo].[user] where u_id='"+id+"' and u_pwd = '"+pwd+"' ";
             System.out.println(sql);
 //            System.out.println("yes");
             try {

@@ -28,6 +28,8 @@ public class Login extends HttpServlet {
         User u = new User();
         u.setUid(id);
         u.setPwd(pwd);
+        System.out.println(id);
+        System.out.println(pwd);
         LoginService ls = new LoginServiceImpl();
         User user = ls.logServeice(u);
         if (user==null){

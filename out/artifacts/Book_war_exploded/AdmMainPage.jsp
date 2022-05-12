@@ -74,10 +74,7 @@
 
         }
         function goBookManage(){
-            // alert("333")
             window.location.href = "fileServlet?action=goBookManage&admid="+${user.getUid()};
-            // alert("555")
-
         }
         function goHead(){
             window.location.href = "fileServlet?action=goHead&admid="+${user.getUid()};

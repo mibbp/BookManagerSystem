@@ -6,10 +6,11 @@ public class RegisterDaoImpl implements RegisterDao{
     @Override
     public void addUser(String user_id, String user_name, String user_sex, String user_pwd) {
         String sql="Insert into [dbo].[user] Values ('"+user_id+"','"+user_name+"','"+user_sex+"',null,0,'"+user_pwd+"',0,1,null)";
+        System.out.println(sql);
         deal(sql);
     }
     private void deal(String sql) {
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=book";
+        String url = "jdbc:sqlserver://112.74.80.148:11433;databaseName=book";
         Connection connection;
 
         try {
@@ -18,7 +19,7 @@ public class RegisterDaoImpl implements RegisterDao{
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            connection = DriverManager.getConnection(url,"sa","llh2002908");
+            connection = DriverManager.getConnection(url,"sa","E6gps@1234");
 
             PreparedStatement pre = null;
             Statement stat = connection.createStatement();//创建一个 Statement 对象来将 SQL 语句发送到数据库。

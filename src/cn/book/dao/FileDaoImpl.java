@@ -17,7 +17,7 @@ public class FileDaoImpl implements FileDao{
     public List<User> getAllUser() {
         List <User> arr = new ArrayList<User>();
 
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=book";
+        String url = "jdbc:sqlserver://112.74.80.148:11433;databaseName=book";
         Connection connection;
 
         try {
@@ -26,7 +26,7 @@ public class FileDaoImpl implements FileDao{
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            connection = DriverManager.getConnection(url,"sa","llh2002908");
+            connection = DriverManager.getConnection(url,"sa","E6gps@1234");
 
             PreparedStatement pre = null;
             Statement stat = connection.createStatement();//创建一个 Statement 对象来将 SQL 语句发送到数据库。
@@ -76,7 +76,7 @@ public class FileDaoImpl implements FileDao{
     @Override
     public User getUserByidOrName(String admid) {
 
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=book";
+        String url = "jdbc:sqlserver://112.74.80.148:11433;databaseName=book";
         Connection connection;
         User u =null;
 
@@ -89,7 +89,7 @@ public class FileDaoImpl implements FileDao{
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            connection = DriverManager.getConnection(url,"sa","llh2002908");
+            connection = DriverManager.getConnection(url,"sa","E6gps@1234");
 
             PreparedStatement pre = null;
             ResultSet res = null;
@@ -136,7 +136,7 @@ public class FileDaoImpl implements FileDao{
     public List<Book> getAllBook() {
         List <Book> arr = new ArrayList<Book>();
 
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=book";
+        String url = "jdbc:sqlserver://112.74.80.148:11433;databaseName=book";
         Connection connection;
 
         try {
@@ -145,7 +145,7 @@ public class FileDaoImpl implements FileDao{
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            connection = DriverManager.getConnection(url,"sa","llh2002908");
+            connection = DriverManager.getConnection(url,"sa","E6gps@1234");
 
             PreparedStatement pre = null;
             Statement stat = connection.createStatement();//创建一个 Statement 对象来将 SQL 语句发送到数据库。
@@ -199,7 +199,7 @@ public class FileDaoImpl implements FileDao{
     public List<Book> getBookByNameOrId(String goalFile) {
         List <Book> arr = new ArrayList<Book>();
 
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=book";
+        String url = "jdbc:sqlserver://112.74.80.148:11433;databaseName=book";
         Connection connection;
 
         try {
@@ -208,14 +208,15 @@ public class FileDaoImpl implements FileDao{
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            connection = DriverManager.getConnection(url,"sa","llh2002908");
+            connection = DriverManager.getConnection(url,"sa","E6gps@1234");
 
             PreparedStatement pre = null;
             Statement stat = connection.createStatement();//创建一个 Statement 对象来将 SQL 语句发送到数据库。
 //            ResultSet res=stat.executeQuery("select * from [dbo].[user]");
             ResultSet res = null;
 //Select * From [dbo].[books] Where book_id ='b' OR book_name Like '%Java%';
-            String sql="select * from [dbo].[books] Where book_id ='"+goalFile+"' OR book_name Like '%"+goalFile+"%' OR book_type like '%"+goalFile+"%'";
+            String sql="select * from [dbo].[books] Where book_id ='"+goalFile+"' OR book_name Like '%"
+                    +goalFile+"%' OR book_type like '%"+goalFile+"%'";
             try {
                 pre = connection.prepareStatement(sql);
                 res=pre.executeQuery();
@@ -285,7 +286,7 @@ UPDATE [dbo].[books] set book_num=10,book_price=24 where book_id='b101121';
     }
 
     public List<BookLendType> getLendFiles(String sql){
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=book";
+        String url = "jdbc:sqlserver://112.74.80.148:11433;databaseName=book";
         Connection connection;
         List<BookLendType> list = null;
         System.out.println(sql);
@@ -295,7 +296,7 @@ UPDATE [dbo].[books] set book_num=10,book_price=24 where book_id='b101121';
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            connection = DriverManager.getConnection(url,"sa","llh2002908");
+            connection = DriverManager.getConnection(url,"sa","E6gps@1234");
 
             PreparedStatement pre = null;
             Statement stat = connection.createStatement();//创建一个 Statement 对象来将 SQL 语句发送到数据库。
@@ -395,7 +396,7 @@ UPDATE [dbo].[books] set book_num=10,book_price=24 where book_id='b101121';
     @Override
     public String getBookid(String lendid) {
         String sql = "Select l_bookid AS a From [dbo].[booklend] Where l_id ='"+lendid+"'";
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=book";
+        String url = "jdbc:sqlserver://112.74.80.148:11433;databaseName=book";
         Connection connection;
         List<BookLendType> list = null;
         System.out.println(sql);
@@ -406,7 +407,7 @@ UPDATE [dbo].[books] set book_num=10,book_price=24 where book_id='b101121';
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            connection = DriverManager.getConnection(url,"sa","llh2002908");
+            connection = DriverManager.getConnection(url,"sa","E6gps@1234");
 
             PreparedStatement pre = null;
             Statement stat = connection.createStatement();//创建一个 Statement 对象来将 SQL 语句发送到数据库。
@@ -500,7 +501,7 @@ UPDATE [dbo].[books] set book_num=10,book_price=24 where book_id='b101121';
     public List<bookbackup> getAllbackup() {
         List <bookbackup> arr = new ArrayList<bookbackup>();
 
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=book";
+        String url = "jdbc:sqlserver://112.74.80.148:11433;databaseName=book";
         Connection connection;
 
         try {
@@ -509,7 +510,7 @@ UPDATE [dbo].[books] set book_num=10,book_price=24 where book_id='b101121';
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            connection = DriverManager.getConnection(url,"sa","llh2002908");
+            connection = DriverManager.getConnection(url,"sa","E6gps@1234");
 
             PreparedStatement pre = null;
             Statement stat = connection.createStatement();//创建一个 Statement 对象来将 SQL 语句发送到数据库。
@@ -567,7 +568,7 @@ UPDATE [dbo].[books] set book_num=10,book_price=24 where book_id='b101121';
 
 
     private void deal(String sql) {
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=book";
+        String url = "jdbc:sqlserver://112.74.80.148:11433;databaseName=book";
         Connection connection;
 
         try {
@@ -576,7 +577,7 @@ UPDATE [dbo].[books] set book_num=10,book_price=24 where book_id='b101121';
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            connection = DriverManager.getConnection(url,"sa","llh2002908");
+            connection = DriverManager.getConnection(url,"sa","E6gps@1234");
 
             PreparedStatement pre = null;
             Statement stat = connection.createStatement();//创建一个 Statement 对象来将 SQL 语句发送到数据库。

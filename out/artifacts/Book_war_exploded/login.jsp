@@ -119,6 +119,8 @@
     <script>
         function login(){
             let uid = document.getElementById("uid").value;
+            uid = "'"+uid+"'";
+            alert(uid);
             let pwd = document.getElementById("upwd").value;
             if(uid==null||uid.trim()==""){
                 document.getElementById("error").innerHTML = "账户不能为空";
